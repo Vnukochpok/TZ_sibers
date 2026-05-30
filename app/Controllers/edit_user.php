@@ -36,8 +36,8 @@ $password = !empty($_POST['password']) ? password_hash($_POST['password'], PASSW
 // Check if user is already exists
 $sql_check = "SELECT * from users WHERE login='$login'";
 $result = mysqli_query($conn, $sql_check);
-if (mysqli_num_rows($result) <= 0) {
-    header("Location: ../Views/admin_panel.php?error=user_not_exists");
+if (mysqli_num_rows($result) > 0) {
+    header("Location: ../Views/admin_panel.php?error=user_with_login_exists");
     exit();
 }
 
