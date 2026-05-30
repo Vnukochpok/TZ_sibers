@@ -14,7 +14,7 @@ require_once('../../config/db.php');
 $id = $_POST['id'];
 
 if ($id <= 0) {
-    header("Location: ../Views/users.php?error=invalid_id");
+    header("Location: ../Views/admin_panel.php?error=invalid_id");
     exit();
 }
 
@@ -22,7 +22,7 @@ if ($id <= 0) {
 $sql = "SELECT * FROM users WHERE id = $id";
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) == 0) {
-    header("Location: ../Views/users.php?error=user_not_found");
+    header("Location: ../Views/admin_panel.php?error=user_not_found");
     exit();
 }
 
@@ -76,7 +76,7 @@ $update_sql = "UPDATE users SET
 if (mysqli_query($conn, $update_sql)) {
     header("Location: ../Views/admin_panel.php");
 } else {
-    header("Location: ../Views/users.php?error=update_failed");
+    header("Location: ../Views/admin_panel.php?error=update_failed");
 }
 
 

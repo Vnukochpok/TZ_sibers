@@ -13,7 +13,9 @@ require_once('../../config/db.php');
 $id = $_POST['id'];
 // Check if id is valid
 if ($id <= 0) {
-    header("Location: ../Views/users.php?error=invalid_id");
+    header("Location: ../Views/admin_panel.php?error=invalid_id");
+    exit();
+}
     exit();
 }
 
@@ -22,5 +24,5 @@ $sql = "DELETE FROM users WHERE id = $id";
 if (mysqli_query($conn, $sql)) {
     header("Location: ../Views/admin_panel.php");
 } else {
-    echo "Error deleting user: ";
+    header("Location: ../Views/admin_panel.php?error=delete_failed");
 }
