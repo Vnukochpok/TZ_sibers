@@ -16,6 +16,11 @@ if ($id <= 0) {
     header("Location: ../Views/admin_panel.php?error=invalid_id");
     exit();
 }
+
+$sql_check = "SELECT * from users WHERE id=$id";
+$result = mysqli_query($conn, $sql_check);
+if (mysqli_num_rows($result) == 0) {
+    header("Location: ../Views/admin_panel.php?error=user_not_found");
     exit();
 }
 
