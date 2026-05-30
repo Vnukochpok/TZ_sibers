@@ -30,15 +30,18 @@ $user = mysqli_fetch_assoc($result);
 $pers_data = json_decode($user["pers_data"], true);
 
 // For every field check if it empty, if its not empty - take new value, if its empty - take old
-$login = !empty($_POST['login']) ? $_POST['login'] : $user['login'];
+$login_old = $user['login'];
+$login_new = $_POST['login'];
 $password = !empty($_POST['password']) ? password_hash($_POST['password'], PASSWORD_DEFAULT) : $user['password'];
 
 // Check if user is already exists
-$sql_check = "SELECT * from users WHERE login='$login'";
+$sql_check = "SELECT * from users WHERE login='$login_new'";
 $result = mysqli_query($conn, $sql_check);
 if (mysqli_num_rows($result) > 0) {
     header("Location: ../Views/admin_panel.php?error=user_with_login_exists");
     exit();
+} else if (empty($login_new)) {
+    $login_new = $login_old;
 }
 
 // Check if birthday is not in the future
@@ -68,7 +71,7 @@ $new_pers_data = json_encode([
 
 // Update user info in database
 $update_sql = "UPDATE users SET 
-               login = '$login',
+               login = '$login_new',
                password = '$password',
                pers_data = '$new_pers_data'
                WHERE id = $id";
