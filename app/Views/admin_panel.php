@@ -85,7 +85,7 @@ renderPagination($pagination['total_pages'], $pagination['current_page'], $sort_
     <input type="text" name="name" placeholder="Name"><br>
     <input type="text" name="surname" placeholder="Surname"><br>
     <select name="gender" id="gender-select">
-        <option value="">Choose your gender</option>
+        <option value="Empty">Choose your gender</option>
         <option value="Male">Male</option>
         <option value="Female">Female</option>
         <option value="Other">Other</option>

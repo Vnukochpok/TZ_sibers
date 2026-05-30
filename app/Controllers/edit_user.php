@@ -53,8 +53,11 @@ if (!empty($_POST['date'])) {
 
 $name = !empty($_POST['name']) ? $_POST['name'] : $pers_data['name'];
 $surname = !empty($_POST['surname']) ? $_POST['surname'] : $pers_data['surname'];
-$gender = !empty($_POST['gender']) ? $_POST['gender'] : $pers_data['gender'];
 $date = !empty($_POST['date']) ? $_POST['date'] : $pers_data['date'];
+$gender = !empty($_POST['gender']) ? $_POST['gender'] : $pers_data['sex'];
+if ($gender == "Empty") {
+    $gender = $pers_data['sex'];
+}
 
 $new_pers_data = json_encode([
     'name' => $name,
