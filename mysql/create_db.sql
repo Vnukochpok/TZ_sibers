@@ -1,0 +1,18 @@
+CREATE DATABASE IF NOT EXISTS db_tz_sibers;
+USE db_tz_sibers;
+
+CREATE TABLE IF NOT EXISTS superusers (
+    id INT NOT NULL AUTO_INCREMENT,
+    login VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS users (
+    id INT NOT NULL AUTO_INCREMENT,
+    login VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    pers_data LONGTEXT NOT NULL,
+    PRIMARY KEY (id)
+);
